@@ -86,13 +86,13 @@ client.on('ready', async() => {
 });
 client.on('messageUpdate', async(oldMessage, newMessage) =>{
 
-   require('./events/messageUpdate')(oldMessage, newMessage)
+   //require('./events/messageUpdate')(oldMessage, newMessage)
 
 })
 
 client.on('messageDelete', async(message) =>{
 
-   require('./events/messageDelete')(message)
+   //require('./events/messageDelete')(message)
 
 })
 client.on('guildCreate', () =>{
