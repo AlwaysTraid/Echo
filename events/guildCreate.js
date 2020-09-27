@@ -27,6 +27,7 @@ module.exports = async (client, guild) => {
 
     const embed = new MessageEmbed()
     .setTitle(`Well! Your life is going to be a whole lot better with Echo! 🥳`)
+    .setColor(`GREEN`)
     .setDescription(`
     》 **Prefix:** \`-\`
     》 **Enable/Disable:** Enable different categories by doing either \`-enable\` or \`-disable\`!
