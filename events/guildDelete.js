@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Guild = require('../models/guild')
 
-mongoose.models.exports = async (client, guild) => {
+module.exports = async (client, guild) => {
 
     Guild.findOneAndDelete({
 

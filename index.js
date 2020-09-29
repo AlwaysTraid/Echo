@@ -9,11 +9,15 @@ const glob = require('glob');
 const { scheduleGiveaway } = require('./util/giveaway');
 const Giveaway = require(`./models/Giveaway`);
 const Config = require('./models/Config');
+const { Player } = require("discord-player")
 
 const categories = new Collection()
 
 
 const client = new Client({ disableMentions: 'everyone' });
+
+const player = new Player(client)
+client.player = player;
 
 client.commands = new Collection();
 client.queue = new Map();
@@ -95,14 +99,15 @@ client.on('messageDelete', async(message) =>{
    //require('./events/messageDelete')(message)
 
 })
-client.on('guildCreate', () =>{
-
-   require('./events/guildCreate')
+client.on('guildCreate', async (guild) =>{
+   const joinMember = require('./events/guildCreate')
+   joinMember(client, guild)
 
 })
-client.on('guildDelete', () =>{
+client.on('guildDelete', async(guild) =>{
 
-   require('./events/guildDelete')
+   const leaveMember = require('./events/guildDelete')
+   leaveMember(client, guild)
 
 })
 client.on("guildMemberAdd", (member) => {
@@ -213,7 +218,7 @@ client.on('message', async (message) => {
                command.execute(message, args, client, prefix);
             } catch (error) {
                console.error(error);
-               message.reply('There was an error executing that command.').catch(console.error);
+               message.reply('There was an error executing that command.').catch(console.error + `: ${command}`);
             }
          }
       }catch(e){}

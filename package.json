@@ -10,6 +10,7 @@
     "dateformat": "^3.0.3",
     "discord-giveaways": "^4.2.1",
     "discord-jokes": "^1.0.12",
+    "discord-player": "^2.3.1",
     "discord.js": "^12.3.1",
     "discord.js-pagination": "^1.0.2",
     "dotenv": "^8.2.0",

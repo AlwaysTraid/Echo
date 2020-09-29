@@ -3,15 +3,12 @@ const mongoose = require('mongoose')
 const Guild = require('../models/guild')
 
 module.exports = async (client, guild) => {
-   
-    guild = new Guild({
+    
+    const guildDoc = new Guild({
 
         _id: mongoose.Types.ObjectId(),
         guildID: guild.id,
-        prefix: {
-            type: String,
-            default: "-"
-        },
+        prefix: "-",
         fun: true,
         miscellaneous: true,
         moderation: false,
@@ -21,29 +18,34 @@ module.exports = async (client, guild) => {
 
     })
 
-    guild.save()
+    guildDoc.save()
     .then(result => console.log(result))
     .catch(err => console.error(err))
 
-    const embed = new MessageEmbed()
-    .setTitle(`Well! Your life is going to be a whole lot better with Echo! 🥳`)
-    .setColor(`GREEN`)
-    .setDescription(`
-    》 **Prefix:** \`-\`
-    》 **Enable/Disable:** Enable different categories by doing either \`-enable\` or \`-disable\`!
-    》 **Invite Me:** Check out the \`-botinfo\` command!
-    》 **Prefix:** You are able to change my prefix for this server easily with \`-prefix\`!
-    》 **What else?**: Check out \`-help\`!
-    》 Any questions can be taken with my creator: \`Traid#8181\`
-    `)
-    const channel = guild.channels.cache.find(
-        (channel) => channel.type === 'text' && channel.permissionsFor(guild.me).has('SEND_MESSAGES')
-    );
-    try{
-        channel.send(embed)
-    }
-    catch(e){
-        console.log(e)
-    }
+    let channelID
+        let channels = guild.channels.cache
+        channelLoop:
+        for (let c of channels) {
+          let channelType = c[1].type
+          if (channelType === "text") {
+              channelID = c[0]
+              break channelLoop
+            }
+        }  
+        let channel = client.channels.cache.get(guild.systemChannelID || channelID)
+  
+        channel.send(new MessageEmbed()
+        .setTitle(`Well! Your life is going to be a whole lot better with Echo! 🥳`)
+        .setColor(`GREEN`)
+        .setDescription(`
+        》 **Prefix:** \`-\`
+        》 **Enable/Disable:** Enable different categories by doing either \`-enable\` or \`-disable\`!
+        》 **Invite Me:** Check out the \`-botinfo\` command!
+        》 **Prefix:** You are able to change my prefix for this server easily with \`-prefix\`!
+        》 **What else?**: Check out \`-help\`!
+        》 Any questions can be taken with my creator: \`Traid#8181\`
+        `)
+        
+        )
     console.log('I have joined a new server!')
 }

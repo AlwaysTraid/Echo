@@ -7,7 +7,7 @@ module.exports = async(member) =>{
         `${member} just poofed out of existance`,
         `Did ${member} mistake the leave and boost button?`,
         `Well ${member} is gone.`,
-        `Enjoy your stay ${member}.`,
+        `Hope you enjoyed your stay ${member}.`,
         `${member} has left!`,
         `Sorry to see you go ${member}!`,
         `Bye ${member}!`,
@@ -27,7 +27,7 @@ module.exports = async(member) =>{
 
     const ConfigDoc = await Config.findOne({ guildId: member.guild.id })
     if(!ConfigDoc.exit) return;
-    
+    try{
     const embed = new MessageEmbed()
     .setAuthor(`${member.user.tag} - ${member.id}`, member.user.displayAvatarURL({ dynamic: true }))
     .setColor('RED')
@@ -42,5 +42,7 @@ module.exports = async(member) =>{
             channel = member.guild.channels.cache.get(member.guild.systemChannelID)
         }
         channel.send(embed)
+    }
+    catch{}
     
 }
