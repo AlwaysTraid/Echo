@@ -1,3 +1,5 @@
+const { MessageEmbed } = require('discord.js');
+
 module.exports = {
    sameChanAsBot(member) {
       const { channel } = member.voice;

@@ -12,7 +12,7 @@ module.exports = {
       }
 
       try {
-         var stream = await ytdlDiscord(song.url, { highWaterMark: 1 << 25 });
+         var stream = await ytdlDiscord(song.url, { highWaterMark: 1 << 25, headers:{ 'Cookie': `${song.url}`} });
       } catch (error) {
          console.log(error);
          if (queue) {
