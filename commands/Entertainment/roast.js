@@ -10,7 +10,15 @@ module.exports = {
     usage: `<Mention/ID>`,
     execute(message, args)  {
 
+        if(!args[0]){
+            return message.channel.send('Please let me know who you\'d like to roast!')
+        }
+
         member = message.mentions.members.first() || message.guild.members.cache.get(args[0])
+
+        if(!member){
+            return message.channel.send('Please enter a valid user\'s ID or mention them accordingly.')
+        }
         const roasts = [
            `${member} is as useless as the 'ueue' in queue`,
            `Mirrors can't talk. Luckily for ${member}, they can't laugh either.`,
@@ -30,7 +38,7 @@ module.exports = {
            `I love what you did with your hair, ${member}! How'd you get it to come out of your nose like that?`,
            `${member} is that one gray sprinkle on a rainbow sprinkle cupcake`,
            `Light travels faster than sound. That is probably why ${member} looked bright before they spoke.`,
-           `${member} is so annoying that he was refused the Happy Meal.`,
+           `${member} is so annoying that they was refused the Happy Meal.`,
            `I take ${member} everywhere I go so I don't have to kiss them goodnight.`,
            `It's impossible to understimate ${member}`,
            `I'm sorry if I hurt your feelings ${member}. I'm not trying to insult you. I'm just describing you.`,

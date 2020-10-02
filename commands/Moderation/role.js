@@ -10,6 +10,8 @@ module.exports = {
     usage: `<ID> <role-name>, <role-name>, etc.`,
     async execute(message, args, client)  {
 
+        return message.channel.send('Sorry, this command is currently being worked on. Will be finished soon!')
+
         if (!message.member.hasPermission('MANAGE_MESSAGES')){
             return message.channel.send(`You must have the MANAGE_MESSAGES permission to do this command.`).then(m => m.delete({timeout: 10000}));
         }
