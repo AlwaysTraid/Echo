@@ -2,6 +2,8 @@
 
 ![Bot Logo](https://cdn.discordapp.com/avatars/741693874413633646/304345503b05ad9a3509fa51d2968a3f.webp) 
 
+Echo is a versatile Discord Bot made back in 2020 which sole purpose was to aid communities through different features such as music, covid stats, role management and more! Echo Bot is currently a Verified Discord Bot as well.
+
 ## Features
 
 ![Statistics](https://cdn.discordapp.com/attachments/1164788122018652251/1166215445087518820/image.png?ex=6549adc5&is=653738c5&hm=ff5c18b87000da2992874b4d111cb332a4ed6341ed64ab9db55ff14d67853bc1&)
